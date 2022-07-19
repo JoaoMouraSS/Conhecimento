@@ -1,0 +1,1 @@
+Basicamente nesse curso aprendi a criar a estrutura dos modelos de deep learning na mão, ou seja, criando funções e ferramentas proprias das python. Usei muito pouco as bibliotecas. Usado bastante lógica de programação. 
