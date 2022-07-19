@@ -1,0 +1,17 @@
+# Quanto mais definido for o formato melhor será. Se ficar muito espalhado não presta.
+
+def histogram_correlation_plot(data, features, target, ncols=3, rolling_num=1000):
+    nrows = round(len(features) / ncols)
+    fig, axes = plt.subplots(nrows, ncols, figsize=(16, round(nrows*16/ncols)))
+    col_i, row_i = 0, 0
+    for index, feature in enumerate(features):
+        temp = data.sort_values(feature)
+        temp.reset_index(inplace=True)
+        axes[row_i][col_i].scatter(temp.index, temp[target].rolling(rolling_num).mean(), s=1, alpha=0.5)
+        axes[row_i][col_i].set_title(feature)
+        axes[row_i][col_i].set_xticks(np.arange(0, 900000, step=10000))
+        col_i += 1
+        if col_i == ncols:
+            col_i = 0
+            row_i += 1
+    plt.show()

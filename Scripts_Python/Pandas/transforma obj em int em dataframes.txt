@@ -1,0 +1,1 @@
+dados.Valor.astype(str).astype(int) #Precisa 1° transformar em string e depois para inteiro

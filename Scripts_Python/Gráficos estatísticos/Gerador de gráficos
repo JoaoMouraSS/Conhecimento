@@ -1,0 +1,22 @@
+# "feature" = Y (A variavel que queremos prever)
+
+def plot_distributions(data, features, hue='target', ncols=3, method='hist'):
+    nrows = round(len(features) / ncols)
+    fig, axes = plt.subplots(nrows, ncols, figsize=(16, round(nrows*16/ncols)))
+    col_i, row_i = 0, 0
+    for index, feature in enumerate(features):
+        if method == 'hist':
+            sns.kdeplot(data=data, x=feature, hue=hue, ax=axes[row_i][col_i])
+        elif method == 'count':
+            temp = data.sort_values(feature)
+            sns.countplot(data=temp, x=feature, hue=hue, ax=axes[row_i][col_i])
+        elif method == 'bar':
+            temp = data.copy()
+            temp['counts'] = 1
+            temp = temp.groupby([hue, feature], as_index=False).agg({'counts':'sum'})
+            sns.barplot(data=temp, x=feature, y='counts', hue=hue, ax=axes[row_i][col_i])
+        col_i += 1
+        if col_i == ncols:
+            col_i = 0
+            row_i += 1
+    plt.show()

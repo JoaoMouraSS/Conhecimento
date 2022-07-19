@@ -1,0 +1,5 @@
+def busca_nome(dataframe,coluna,nome):
+    print(f"No dataframe tem {sum(dataframe[coluna] == nome)} itens encontrados") #Verifica a quantidade de itens
+    print('')
+    return dataframe[dataframe[coluna] == nome] #Retorna os itens
+
